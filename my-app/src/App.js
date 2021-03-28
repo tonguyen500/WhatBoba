@@ -22,7 +22,7 @@ const summerMint = new Boba('Summer Mint', 'Green Tea and Real Passion Fruit Wit
 
 const bobaMenu = [defaultBoba, mintSereno, jasmineMilk, japaneseMatchaSoy, vietCoffee, houseCoffee, japaneseMatcha, taroMilk, thai, seaCreamJasmine, seaCreamBlackCoffee, herbal, strawberryHibiscus, mungBeanMilk, sunsetPassion, assamMilkandOolongMilk, summerMint];
 const iceLevel = ['light', 'regular'];
-const sweetener = ['no']
+const sweetener = ['no sweetener', 'light ', 'medium', 'heavy'];
 const toppings = ['no toppings', 'grass jelly', 'aloe vera', 'boba', 'custard pudding', 'strawberry pieces'];
 
 let choice = 0;
@@ -31,12 +31,13 @@ let toppingsChoice = 0;
 
 class App extends Component {
   render () {
-    function ActionLink() {
+    
       function handleClick(e) {
+        e.preventDefault();
         choice = Math.floor(Math.random() * bobaMenu.length) + 1;
-        document.getElementById('randomizer.h2').innerHTML = "{ bobaMenu[choice].name }";
+        document.getElementById('boba').innerHTML = `${bobaMenu[choice].name}`;
 
-      }
+     
     }
     return (
       <div>
@@ -54,11 +55,11 @@ class App extends Component {
             <p className="card-paragraph">
               Click below to choose a random boba for the day
             </p>
-            <button class="btn" onClick={this.handleClick}>Click me!</button>
+            <button class="btn" onClick={handleClick}>Click me!</button>
           </div>
 
           <div className="randomizer">
-            <h2>
+            <h2 id = "boba">
               { bobaMenu[choice].name }
             </h2>
             <p>
