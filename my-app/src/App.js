@@ -34,13 +34,21 @@ class App extends Component {
     
       function handleClick(e) {
         e.preventDefault();
-        choice = Math.floor(Math.random() * bobaMenu.length) + 1;
-        document.getElementById('boba').innerHTML = `${bobaMenu[choice].name}`;
+        choice = Math.floor(Math.random() * bobaMenu.length);
+        if (choice == 0)
+        {
+          choice+= 1;
+        } 
+        document.getElementById('boba-name').innerHTML = `${bobaMenu[choice].name}`;
+        document.getElementById('boba-description').innerHTML = `${bobaMenu[choice].description}`;
+        // document.getElementsByClassName('img').src = `${bobaMenu[choice].image}`;
+        document.getElementById('boba-image').src = `${bobaMenu[choice].image}`;
 
      
     }
     return (
-      <div>
+
+      <div >
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,16 +67,17 @@ class App extends Component {
           </div>
 
           <div className="randomizer">
-            <h2 id = "boba">
+            <h2 id = "boba-name">
               { bobaMenu[choice].name }
             </h2>
-            <p>
+            <p id = "boba-description">
               { bobaMenu[choice].description }
             </p>
-            <img className="img" src={ bobaMenu[choice].image } alt="placeholder" width="400px" height="400px"/> 
+            <img className="img" id = "boba-image" src= {bobaMenu[choice].image } alt="placeholder" width="400px" height="400px"/> 
           </div>
         </div>
       </div>
+      
     );
   }  
 }
