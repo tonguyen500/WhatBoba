@@ -71,7 +71,7 @@ class App extends Component {
 
         <div className="container">
           <header className="boba-header">
-            <h1 className="title">Boba Randomizer</h1>
+            <h1 className="title">Spontaneous B</h1>
           </header>
 
           <div className="boba-card">
