@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Boba from './Boba';
 
+// Made objects for each boba drink
 const defaultBoba = new Boba('', '', 'https://i.imgur.com/XdAnrtO.gif');
 const mintSereno = new Boba('Mint Sereno', 'The Mint Sereno blend is made from fresh mint, real cream and brown sugar.', 'https://7leavescafe.com/wp-content/uploads/IMG-7074-scaled-e1578445612853.jpg');
 const jasmineMilk= new Boba('Jasmine Milk Tea', 'A Sweet Mix of Jasmine Green Tea and Milk', 'https://7leavescafe.com/wp-content/uploads/Drinks_Cold_JasmineMilkTea-540x360.jpg');
@@ -20,26 +21,39 @@ const sunsetPassion = new Boba('Sunset Passion', 'Hand Squeezed Passion Fruit', 
 const assamMilkandOolongMilk = new Boba('Assam Milk Tea & Oolong Milk Tea', 'Full-Bodied and Creamy Milk Teas', 'https://7leavescafe.com/wp-content/uploads/AO_0609171-540x537.jpg');
 const summerMint = new Boba('Summer Mint', 'Green Tea and Real Passion Fruit With Hints of Mint and Orange. ', 'https://7leavescafe.com/wp-content/uploads/Summer-Mint_3.26.2019-3-540x360.jpg');
 
+// Placed objects into arrays
 const bobaMenu = [defaultBoba, mintSereno, jasmineMilk, japaneseMatchaSoy, vietCoffee, houseCoffee, japaneseMatcha, taroMilk, thai, seaCreamJasmine, seaCreamBlackCoffee, herbal, strawberryHibiscus, mungBeanMilk, sunsetPassion, assamMilkandOolongMilk, summerMint];
-const iceLevel = ['light', 'regular'];
-const sweetener = ['no sweetener', 'light ', 'medium', 'heavy'];
-const toppings = ['no toppings', 'grass jelly', 'aloe vera', 'boba', 'custard pudding', 'strawberry pieces'];
+const ice = ['None', 'light', 'regular'];
+const sweetener = ['None', 'light ', 'medium', 'heavy'];
+const toppings = ['None', 'grass jelly', 'aloe vera', 'boba', 'custard pudding', 'strawberry pieces'];
 
 let choice = 0;
 let iceChoice = 0;
 let toppingsChoice = 0;
+let sweetenerChoice = 0;
 
+// React stuff
 class App extends Component {
   render () {
-    
+    // Button logic
       function handleClick(e) {
         e.preventDefault();
+
+        // Random for Javascript
         choice = Math.floor(Math.random() * bobaMenu.length);
+        iceChoice = Math.floor(Math.random() * ice.length);
+        toppingsChoice = Math.floor(Math.random() * toppings.length);
+        sweetenerChoice = Math.floor(Math.random() * sweetener.length);
+
+        // Boba default breaks program
         if (choice == 0)
         {
           choice+= 1;
         } 
         document.getElementById('boba-name').innerHTML = `${bobaMenu[choice].name}`;
+        document.getElementById('boba-ice').innerHTML = ` Ice: ${ice[iceChoice]}`;
+        document.getElementById('boba-toppings').innerHTML = ` Topping: ${toppings[toppingsChoice]}`;
+        document.getElementById('boba-sweetener').innerHTML = ` Sweetness: ${sweetener[sweetenerChoice]}`;
         document.getElementById('boba-description').innerHTML = `${bobaMenu[choice].description}`;
         // document.getElementsByClassName('img').src = `${bobaMenu[choice].image}`;
         document.getElementById('boba-image').src = `${bobaMenu[choice].image}`;
@@ -49,6 +63,7 @@ class App extends Component {
     return (
 
       <div >
+        {/* html boilerplate */}
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -70,7 +85,11 @@ class App extends Component {
             <h2 id = "boba-name">
               { bobaMenu[choice].name }
             </h2>
-            <p id = "boba-description">
+
+            <h3 id="boba-ice"></h3>
+            <h3 id="boba-toppings"></h3>
+            <h3 id="boba-sweetener"></h3>
+            <p id="boba-description">
               { bobaMenu[choice].description }
             </p>
             <img className="img" id = "boba-image" src= {bobaMenu[choice].image } alt="placeholder" width="400px" height="400px"/> 
